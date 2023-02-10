@@ -12,7 +12,6 @@ use Lunar\PaymentTypes\AbstractPayment;
 
 class BraintreePaymentType extends AbstractPayment
 {
-<<<<<<< HEAD
     public $braintree;
 
     public $policy;
@@ -27,10 +26,6 @@ class BraintreePaymentType extends AbstractPayment
         ]);
     }
 
-||||||| adding braintree components
-
-=======
->>>>>>> main
     /**
      * {@inheritDoc}
      */
