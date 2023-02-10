@@ -3,8 +3,8 @@
 namespace Lancodev\LunarBraintree\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Lancodev\LunarBraintree\LunarBraintreeServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

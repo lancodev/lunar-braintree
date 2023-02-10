@@ -2,9 +2,9 @@
 
 namespace Lancodev\LunarBraintree;
 
+use Lancodev\LunarBraintree\Commands\LunarBraintreeCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Lancodev\LunarBraintree\Commands\LunarBraintreeCommand;
 
 class LunarBraintreeServiceProvider extends PackageServiceProvider
 {
