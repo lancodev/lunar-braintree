@@ -16,21 +16,22 @@ class PaymentForm extends Component
 
     public $policy;
 
+    public $clientToken;
+
     protected $listeners = [
         'createOrder',
         'onApprove',
         'cartUpdated' => 'refreshCart',
         'selectedShippingOption' => 'refreshCart',
+        'paymentSubmitted' => 'paymentSubmitted',
     ];
 
     public function mount()
     {
-        $gateway = new Gateway([
-            'environment' => config('lunar-braintree.environment'),
-            'merchantId' => config('lunar-braintree.merchant_id'),
-            'publicKey' => config('lunar-braintree.public_key'),
-            'privateKey' => config('lunar-braintree.private_key'),
-        ]);
+        $gateway = $this->getGateway();
+
+        // TODO: Implement lookup for existing Braintree customers here (and pass the customer ID into the generate function)
+        $this->clientToken = $gateway->clientToken()->generate();
     }
 
     public function createOrder($data)
@@ -68,6 +69,21 @@ class PaymentForm extends Component
         logger('submitting');
     }
 
+    public function paymentSubmitted($payload)
+    {
+        ray($payload);
+        $gateway = $this->getGateway();
+        $result = $gateway->transaction()->sale([
+            'amount' => '10.00',
+            'paymentMethodNonce' => $payload['nonce'],
+            'options' => [
+                'submitForSettlement' => true,
+            ],
+        ]);
+
+        ray($result);
+    }
+
     public function refreshCart()
     {
         $this->cart = CartSession::current();
@@ -76,5 +92,18 @@ class PaymentForm extends Component
     public function render()
     {
         return view('lunar-braintree::braintree.components.payment-form');
+    }
+
+    /**
+     * @return Gateway
+     */
+    public function getGateway(): Gateway
+    {
+        return new Gateway([
+            'environment' => config('lunar-braintree.environment'),
+            'merchantId' => config('lunar-braintree.merchant_id'),
+            'publicKey' => config('lunar-braintree.public_key'),
+            'privateKey' => config('lunar-braintree.private_key'),
+        ]);
     }
 }

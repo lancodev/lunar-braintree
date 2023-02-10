@@ -3,7 +3,7 @@
 namespace Lancodev\LunarBraintree;
 
 use Illuminate\Support\Facades\Blade;
-use Lancodev\LunarPaypal\Components\PaymentForm;
+use Lancodev\LunarBraintree\Components\PaymentForm;
 use Livewire\Livewire;
 use Lunar\Facades\Payments;
 use Spatie\LaravelPackageTools\Package;
@@ -28,7 +28,7 @@ class LunarBraintreeServiceProvider extends PackageServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'lunar-braintree');
 
         // Register the stripe payment component.
-        Livewire::component('paypal.payment', PaymentForm::class);
+        Livewire::component('braintree.payment-form', PaymentForm::class);
     }
 
     public function configurePackage(Package $package): void
