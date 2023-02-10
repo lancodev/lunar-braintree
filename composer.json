@@ -19,6 +19,7 @@
         "php": "^8.1",
         "braintree/braintree_php": "^6.11",
         "illuminate/contracts": "^9.0",
+        "lunarphp/lunar": "^0.2",
         "spatie/laravel-package-tools": "^1.14.0"
     },
     "require-dev": {
