@@ -10,9 +10,8 @@ use Lunar\PaymentTypes\AbstractPayment;
 
 class BraintreePaymentType extends AbstractPayment
 {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function authorize(): PaymentAuthorize
     {
@@ -20,7 +19,7 @@ class BraintreePaymentType extends AbstractPayment
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function refund(Transaction $transaction, int $amount, $notes = null): PaymentRefund
     {
@@ -28,7 +27,7 @@ class BraintreePaymentType extends AbstractPayment
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function capture(Transaction $transaction, $amount = 0): PaymentCapture
     {
